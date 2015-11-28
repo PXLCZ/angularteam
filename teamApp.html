@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<title>Angular Team App</title>
+<script src ="scripts/angular.min.js"></script>
+<script src ="scripts/teamAppModule.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body data-ng-app="myTeamApp">
+<section data-ng-controller="teamCtrl">
+  <h1 data-ng-bind="pageTitle"></h1>
+  <div class="instructions">
+    <ul>
+      <li>Add Name</li>
+      <li>Repeat as necessary (with different name)</li>
+      <li>Add number of teams as there are number of names</li>
+      <li>Create teams</li>
+    </ul>
+  </div>
+  <div class="people">
+    <form>
+      <label>Person name:</label>
+      <input type="text" data-ng-model="name" />
+      <button data-ng-click="add(name)">Add</button>
+    </form>
+  </div>
+  
+  <ul>
+    <li data-ng-repeat="person in people">
+      <h2>{{person}}</h2>
+      <button data-ng-click="remove($index)">delete</button>
+    </li>
+  </ul>
+  <div class="teams">
+    <form>
+      <label>No of teams:</label>
+      <input type="number" data-ng-model="teamNumber" />
+      <button data-ng-click="generateTeams(teamNumber)">Create teams</button>
+    </form>
+  </div>
+  <div data-ng-repeat="team in teams">
+    <h3>Team {{$index + 1}}</h3>
+    <ul>
+      <li data-ng-repeat="person in team">{{person}}</li>
+    </ul>
+  </div>
+  <button data-ng-show="teams.length > 0" data-ng-click="resetTeams()">Reset teams</button>
+</section>
+</body>
+</html>
